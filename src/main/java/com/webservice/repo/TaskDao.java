@@ -1,10 +1,10 @@
-package com.webservice.kanban.repo;
+package com.webservice.repo;
 
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.webservice.kanban.vo.Task;
+import com.webservice.vo.Task;
 
 public interface TaskDao extends JpaRepository<Task, Long>{
 

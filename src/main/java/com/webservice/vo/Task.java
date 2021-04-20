@@ -1,4 +1,4 @@
-package com.webservice.kanban.vo;
+package com.webservice.vo;
 
 import java.io.Serializable;
 

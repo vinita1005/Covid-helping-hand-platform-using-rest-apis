@@ -1,4 +1,4 @@
-package com.webservice.kanban.controller;
+package com.webservice.controller;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.webservice.kanban.repo.TaskDao;
-import com.webservice.kanban.vo.Task;
+import com.webservice.repo.TaskDao;
+import com.webservice.vo.Task;
 
 @RestController
 @RequestMapping("/kanban")
