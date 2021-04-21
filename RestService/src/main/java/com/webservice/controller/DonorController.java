@@ -22,6 +22,11 @@ public class DonorController {
 	@Autowired
 	private DonorDao donorDao;
 	
+	@GetMapping("/greeting")
+	public String greeting() {
+		return "Hello World";
+	}
+	
 	@GetMapping("/getAll")
 	public @ResponseBody List<Donor> listAllDonors(){
 		return null;
