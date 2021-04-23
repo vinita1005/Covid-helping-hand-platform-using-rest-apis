@@ -95,7 +95,7 @@ public class ControllerTests {
 		Mockito.doNothing().when(donorDao).deleteById(Mockito.anyLong());
 		Mockito.when(donorDao.findAll()).thenReturn(donorList);
 		
-		RequestBuilder request = MockMvcRequestBuilders.delete("/donors/deleteDonor").contentType(MediaType.APPLICATION_JSON_VALUE).accept(MediaType.APPLICATION_JSON).requestAttr("id", id);
+		RequestBuilder request = MockMvcRequestBuilders.delete("/donors/deleteDonor?id="+id).contentType(MediaType.APPLICATION_JSON_VALUE).accept(MediaType.APPLICATION_JSON);
 		
 		MvcResult result = mockMvc.perform(request).andReturn();
 		

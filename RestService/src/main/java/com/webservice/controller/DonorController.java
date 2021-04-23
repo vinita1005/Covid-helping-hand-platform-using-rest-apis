@@ -38,13 +38,13 @@ public class DonorController {
 	}
 	
 	@GetMapping("/getByCity")
-	public @ResponseBody List<Donor> listByCity(@RequestParam String city){
+	public @ResponseBody List<Donor> listByCity(@RequestParam(name = "city") String city){
 		return donorDao.findByCity(city);
 	}
 	
 	@GetMapping("/getByBloodType")
-	public @ResponseBody List<Donor> listByBloodType(){
-		return null;
+	public @ResponseBody List<Donor> listByBloodType(@RequestParam(name = "bloodType") String bloodType){
+		return donorDao.findByBloodType(bloodType);
 	}
 	
 	@PostMapping("/addDonor")
@@ -60,7 +60,7 @@ public class DonorController {
 	}
 	
 	@DeleteMapping("/deleteDonor")
-	public @ResponseBody List<Donor> deleteDonor(@RequestAttribute Long id){
+	public @ResponseBody List<Donor> deleteDonor(@RequestParam(name = "id") Long id){
 		donorDao.deleteById(id);
 		return donorDao.findAll();
 	}
