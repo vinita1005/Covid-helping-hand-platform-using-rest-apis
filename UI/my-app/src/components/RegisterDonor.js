@@ -1,15 +1,13 @@
 import React, { useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Avatar from "@material-ui/core/Avatar";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
-
+import {DonorService} from "../service/DonorService"
 import CardActions from "@material-ui/core/CardActions";
 import { TextField } from "@material-ui/core";
-import {DonorService} from "../service/DonorService";
 
    
 export default function UserRegister({ onUserStage }) {
@@ -35,7 +33,8 @@ export default function UserRegister({ onUserStage }) {
     } = donor;
 
     const onRegisterHandler = () => {
-        DonorService.RegisterDonor(donor);
+        DonorService().RegisterDonor(donor);
+        // DonorService().GreetDonor();
     };
 
     const onDonorChange = (event, label) => {
@@ -100,7 +99,7 @@ export default function UserRegister({ onUserStage }) {
                 </CardContent>
                 <CardActions>
                     <Button onClick={onRegisterHandler} variant="outlined" size="large">
-                        Register as a Donor
+                        Register as Plasma Donor
                     </Button>
                 </CardActions>
             </Card>

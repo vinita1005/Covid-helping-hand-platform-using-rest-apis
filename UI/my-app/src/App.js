@@ -1,6 +1,4 @@
-import logo from './logo.svg';
 import './App.css';
-import Container from "@material-ui/core/Container";
 import Header from './components/Header';
 import React, { useState } from "react";
 import UserType from "./components/UserType";
@@ -23,6 +21,8 @@ function App() {
       case 2:
         return <RegisterDonor onUserStage={setStageHandler}/>;
       case 3:
+        return <UserType onUserStage={setStageHandler}/>;
+      default:
         return <UserType onUserStage={setStageHandler}/>;
     }
   };
