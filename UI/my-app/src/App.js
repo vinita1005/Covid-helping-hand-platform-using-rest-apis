@@ -4,6 +4,7 @@ import Container from "@material-ui/core/Container";
 import Header from './components/Header';
 import React, { useState } from "react";
 import UserType from "./components/UserType";
+import RegisterDonor from "./components/RegisterDonor"
 
 function App() {
 
@@ -17,10 +18,10 @@ function App() {
     switch(userStage){
       case 0:
         return <UserType onUserStage={setStageHandler}/>;
-      // case 1:
-      //   return <RegisterDonor onUserStage={setStageHandler}/>;
-      // case 2:
-      //   return <RegisterDonor onUserStage={setStageHandler}/>;
+      case 1:
+        return <RegisterDonor onUserStage={setStageHandler}/>;
+      case 2:
+        return <RegisterDonor onUserStage={setStageHandler}/>;
       case 3:
         return <UserType onUserStage={setStageHandler}/>;
     }
