@@ -37,6 +37,7 @@ export default function UserRegister({ onUserStage }) {
 
   const [donor, setDonor] = useState(IntialUserData);
   const [isValid, setIsValid] = useState(true);
+  const [donorData, setDonorData] = useState([]);
   const {
     fullName,
     city,
@@ -49,7 +50,15 @@ export default function UserRegister({ onUserStage }) {
 
   const onRegisterHandler = () => {
     DonorService().RegisterDonor(donor);
-    return onUserStage(2);
+    getFetch();
+    return onUserStage(2), donorData;
+  };
+
+  const getFetch = async () => {
+    const response = await fetch("http://localhost:8080/donors/getAll");
+    const jsonData = await response.json();
+    console.log(jsonData);
+    setDonorData(jsonData);
   };
 
   const onDonorChange = (event, label) => {

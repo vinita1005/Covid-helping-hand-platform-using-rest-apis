@@ -40,7 +40,7 @@ const cols = [
   createData("Contact No"),
 ];
 
-export default function BasicTable({ onUserStage }) {
+export default function BasicTable({ onUserStage }, initialDonorData) {
   const classes = useStyles();
 
   const [donorData, setDonorData] = useState([]);

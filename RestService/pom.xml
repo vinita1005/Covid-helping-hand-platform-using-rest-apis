@@ -9,13 +9,14 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.webservice</groupId>
-	<artifactId>kanban</artifactId>
+	<artifactId>getmeplasma</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>kanban</name>
+	<name>getmeplasma</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
+	<packaging>jar</packaging>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
