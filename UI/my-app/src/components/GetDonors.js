@@ -40,7 +40,7 @@ const cols = [
   createData("Contact No"),
 ];
 
-export default function BasicTable({ onUserStage }, initialDonorData) {
+export default function BasicTable({ onUserStage }) {
   const classes = useStyles();
 
   const [donorData, setDonorData] = useState([]);
@@ -59,8 +59,9 @@ export default function BasicTable({ onUserStage }, initialDonorData) {
   const getFetch = async () => {
     const response = await fetch("http://localhost:8080/donors/getAll");
     const jsonData = await response.json();
-    console.log(jsonData);
+    console.log("Getting data: ", jsonData);
     setDonorData(jsonData);
+    setFilterDonorData(jsonData);
   };
 
   useEffect(() => {

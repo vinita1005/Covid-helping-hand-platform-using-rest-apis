@@ -50,15 +50,8 @@ export default function UserRegister({ onUserStage }) {
 
   const onRegisterHandler = () => {
     DonorService().RegisterDonor(donor);
-    getFetch();
-    return onUserStage(2), donorData;
-  };
-
-  const getFetch = async () => {
-    const response = await fetch("http://localhost:8080/donors/getAll");
-    const jsonData = await response.json();
-    console.log(jsonData);
-    setDonorData(jsonData);
+    // getFetch();
+    return onUserStage(2);
   };
 
   const onDonorChange = (event, label) => {
