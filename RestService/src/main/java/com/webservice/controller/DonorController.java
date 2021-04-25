@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.webservice.repo.DonorDao;
+import com.webservice.service.DonorService;
 import com.webservice.vo.Donor;
 
 @RestController
@@ -26,7 +26,7 @@ import com.webservice.vo.Donor;
 public class DonorController {
 	
 	@Autowired
-	private DonorDao donorDao;
+	private DonorService donorService;
 	
 	@GetMapping("/greeting")
 	public String greeting() {
@@ -35,35 +35,32 @@ public class DonorController {
 	
 	@GetMapping("/getAll")
 	public @ResponseBody List<Donor> listAllDonors(){
-		return donorDao.findAll();
+		return donorService.getDonorData();
 	}
 	
 	@GetMapping("/getByCity")
 	public @ResponseBody List<Donor> listByCity(@RequestParam(name = "city") String city){
-		return donorDao.findByCity(city);
+		return donorService.getDonorDataByCity(city);
 	}
 	
 	@GetMapping("/getByBloodType")
 	public @ResponseBody List<Donor> listByBloodType(@RequestParam(name = "bloodType") String bloodType){
-		return donorDao.findByBloodType(bloodType);
+		return donorService.getDonorDataByBloodType(bloodType);
 	}
 	
 	@PostMapping("/addDonor")
 	public @ResponseBody List<Donor> saveDonor(@RequestBody Donor donor){
-		donorDao.save(donor);
-		return donorDao.findAll();
+		return donorService.addDonorData(donor);
 	}
 	
 	@PutMapping("/updateDonor")
 	public @ResponseBody List<Donor> updateDonor(@RequestBody Donor donor){
-		donorDao.save(donor);
-		return donorDao.findAll();
+		return donorService.updateDonorData(donor);
 	}
 	
 	@DeleteMapping("/deleteDonor")
 	public @ResponseBody List<Donor> deleteDonor(@RequestParam(name = "id") Long id){
-		donorDao.deleteById(id);
-		return donorDao.findAll();
+		return donorService.deleteDonorData(id);
 	}
 	
 	@ExceptionHandler(RuntimeException.class)

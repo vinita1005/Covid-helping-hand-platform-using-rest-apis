@@ -22,17 +22,21 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.webservice.controller.DonorController;
 import com.webservice.repo.DonorDao;
+import com.webservice.service.DonorService;
 import com.webservice.vo.Donor;
 
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(value = DonorController.class)
-public class ControllerTests {
+public class DonorControllerTests {
 
 	@Autowired
     MockMvc mockMvc;
 	
 	@MockBean
 	DonorDao donorDao;
+	
+	@MockBean
+	DonorService donorService;
 	
 	ObjectMapper objectMapper;
 	List<Donor> donorList;
@@ -48,7 +52,7 @@ public class ControllerTests {
 	@Test
 	public void getAllDonorsListShouldReturnListTest() throws Exception{
 		
-		Mockito.when(donorDao.findAll()).thenReturn(donorList);
+		Mockito.when(donorService.getDonorData()).thenReturn(donorList);
 		RequestBuilder requestBuilder = MockMvcRequestBuilders.get(
 				"/donors/getAll").contentType(MediaType.APPLICATION_JSON_VALUE);
 		
@@ -60,8 +64,7 @@ public class ControllerTests {
 	public void addDonorsToListTest() throws Exception{
 		Donor donor = new Donor("Samwise","Dallas","Texas","USA","7163432321","", true,"O+");
 		donorList.add(donor);
-		Mockito.when(donorDao.save(Mockito.any(Donor.class))).thenReturn(donor);
-		Mockito.when(donorDao.findAll()).thenReturn(donorList);
+		Mockito.when(donorService.addDonorData(Mockito.any(Donor.class))).thenReturn(donorList);
 		
 		RequestBuilder requestBuilder = MockMvcRequestBuilders.post(
 				"/donors/addDonor").contentType(MediaType.APPLICATION_JSON).content(objectMapper.writeValueAsString(donor)).accept(MediaType.APPLICATION_JSON_VALUE);
@@ -79,7 +82,7 @@ public class ControllerTests {
 		donorList2.add(new Donor("Bilbo Baggins","Buffalo","New York","USA","2243221831","", true,"A+"));
 		donorList2.add(new Donor("Frodo Baggins","Buffalo","New York","USA","2243222222","", true,"A+"));
 		
-		Mockito.when(donorDao.findByCity(Mockito.anyString())).thenReturn(donorList2);
+		Mockito.when(donorService.getDonorDataByCity(Mockito.anyString())).thenReturn(donorList2);
 		RequestBuilder requestBuilder = MockMvcRequestBuilders.get(
 				"/donors/getByCity").param("city", city).contentType(MediaType.APPLICATION_JSON_VALUE);
 		
@@ -92,8 +95,7 @@ public class ControllerTests {
 	public void deleteDonorListShouldReturnAllListTest() throws Exception{
 		Long id = 1L;
 		donorList.remove(1);
-		Mockito.doNothing().when(donorDao).deleteById(Mockito.anyLong());
-		Mockito.when(donorDao.findAll()).thenReturn(donorList);
+		Mockito.when(donorService.deleteDonorData(Mockito.anyLong())).thenReturn(donorList);
 		
 		RequestBuilder request = MockMvcRequestBuilders.delete("/donors/deleteDonor?id="+id).contentType(MediaType.APPLICATION_JSON_VALUE).accept(MediaType.APPLICATION_JSON);
 		
@@ -109,8 +111,7 @@ public class ControllerTests {
 		donorList2.add(new Donor("Frodo Baggins","Buffalo","New York","USA","2243222222","", true,"A+"));
 		
 		Donor donor = new Donor("Bilbo Baggins","Buffalo","New York","USA","2243221831","", false,"A+");
-		Mockito.when(donorDao.save(Mockito.any(Donor.class))).thenReturn(donor);
-		Mockito.when(donorDao.findAll()).thenReturn(donorList2);
+		Mockito.when(donorService.updateDonorData(Mockito.any(Donor.class))).thenReturn(donorList2);
 		
 		RequestBuilder request = MockMvcRequestBuilders.put("/donors/updateDonor").contentType(MediaType.APPLICATION_JSON_VALUE).accept(MediaType.APPLICATION_JSON).content(objectMapper.writeValueAsString(donor));
 		

@@ -10,9 +10,9 @@ import com.webservice.vo.Donor;
 public interface DonorService {
 
 	public List<Donor> getDonorData();
-	public List<Donor> getDonorDataByCity();
-	public List<Donor> getDonorDataByBloodType();
-	public List<Donor> addDonorData();
-	public List<Donor> updateDonorData();
-	public List<Donor> deleteDonorData();
+	public List<Donor> getDonorDataByCity(String city);
+	public List<Donor> getDonorDataByBloodType(String bloodType);
+	public List<Donor> addDonorData(Donor donor);
+	public List<Donor> updateDonorData(Donor donor);
+	public List<Donor> deleteDonorData(Long id);
 }

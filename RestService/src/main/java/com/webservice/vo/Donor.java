@@ -32,6 +32,19 @@ public class Donor implements Serializable {
 		this.bloodType = bloodType;
 	}
 
+	public Donor(Long id, String fullName, String city, String state, String country, String contactNo,
+			String fullAddress, boolean isActive, String bloodType) {
+		super();
+		this.id = id;
+		this.fullName = fullName;
+		this.city = city;
+		this.state = state;
+		this.country = country;
+		this.contactNo = contactNo;
+		this.fullAddress = fullAddress;
+		this.isActive = isActive;
+		this.bloodType = bloodType;
+	}
 	@Id
 	@GeneratedValue
 	private Long id;
