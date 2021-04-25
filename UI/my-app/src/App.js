@@ -3,6 +3,7 @@ import Header from './components/Header';
 import React, { useState } from "react";
 import UserType from "./components/UserType";
 import RegisterDonor from "./components/RegisterDonor"
+import GetDonor from "./components/GetDonors"
 
 function App() {
 
@@ -19,7 +20,7 @@ function App() {
       case 1:
         return <RegisterDonor onUserStage={setStageHandler}/>;
       case 2:
-        return <RegisterDonor onUserStage={setStageHandler}/>;
+        return <GetDonor onUserStage={setStageHandler}/>;
       case 3:
         return <UserType onUserStage={setStageHandler}/>;
       default:

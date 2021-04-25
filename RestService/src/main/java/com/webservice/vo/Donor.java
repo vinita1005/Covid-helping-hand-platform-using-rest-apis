@@ -53,8 +53,8 @@ public class Donor implements Serializable {
 
 	@NotNull
 	private String fullAddress;
-
-	private boolean isActive;
+	
+	private boolean isActive=true;
 
 	@NotNull
 	private String bloodType;

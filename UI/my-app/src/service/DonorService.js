@@ -19,5 +19,11 @@ export const DonorService = () => {
         .then(response => response.json())
         .then(data => console.log(data));
     },
+
+    GetDonors: () => {
+      fetch('http://localhost:8080/donors/getAll')
+        .then(response => response.json())
+        .then(data => console.log(data));
+    },
   };
 };
