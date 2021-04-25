@@ -7,9 +7,24 @@ import Avatar from "@material-ui/core/Avatar";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import { DonorService } from "../service/DonorService";
 import CardActions from "@material-ui/core/CardActions";
-import { TextField } from "@material-ui/core";
+import { ListItem, TextField } from "@material-ui/core";
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
+import InputLabel from "@material-ui/core/InputLabel";
+import { makeStyles } from "@material-ui/core/styles";
+import List from "@material-ui/core/List";
+
+const useStyles = makeStyles({
+  table: {
+    minWidth: 650,
+  },
+  root: {
+    width: "100%",
+  },
+});
 
 export default function UserRegister({ onUserStage }) {
+  const classes = useStyles();
   const IntialUserData = {
     fullName: "",
     city: "",
@@ -34,6 +49,7 @@ export default function UserRegister({ onUserStage }) {
 
   const onRegisterHandler = () => {
     DonorService().RegisterDonor(donor);
+    return onUserStage(2);
   };
 
   const onDonorChange = (event, label) => {
@@ -51,6 +67,10 @@ export default function UserRegister({ onUserStage }) {
     }
   }, [fullName, city, bloodType]);
 
+  const onClearHandler = () => {
+    setDonor(IntialUserData);
+  };
+
   return (
     <div>
       <Card>
@@ -63,64 +83,97 @@ export default function UserRegister({ onUserStage }) {
           </Typography>
         </div>
         <CardContent>
-          <TextField
-            fullWidth
-            id="standard-basic"
-            label="Donor Name"
-            value={fullName}
-            required
-            onChange={(e) => onDonorChange(e, "fullName")}
-          />
-          <TextField
-            fullWidth
-            id="standard-basic"
-            label="City"
-            value={city}
-            required
-            onChange={(e) => onDonorChange(e, "city")}
-          />
-          <TextField
-            fullWidth
-            id="standard-basic"
-            label="Blood Type"
-            value={bloodType}
-            required
-            onChange={(e) => onDonorChange(e, "bloodType")}
-          />
-          <TextField
-            fullWidth
-            id="standard-basic"
-            label="State"
-            value={state}
-            onChange={(e) => onDonorChange(e, "state")}
-          />
-          <TextField
-            fullWidth
-            id="standard-basic"
-            label="Country"
-            value={country}
-            onChange={(e) => onDonorChange(e, "country")}
-          />
-          <TextField
-            fullWidth
-            id="standard-basic"
-            label="Contact No"
-            value={contactNo}
-            onChange={(e) => onDonorChange(e, "contactNo")}
-          />
-          <TextField
-            fullWidth
-            id="standard-basic"
-            label="Complete Address"
-            value={fullAddress}
-            onChange={(e) => onDonorChange(e, "fullAddress")}
-          />
+          <List
+            component="nav"
+            className={classes.root}
+            aria-label="mailbox folders"
+          >
+            <ListItem>
+              <TextField
+                fullWidth
+                id="standard-basic"
+                label="Donor Name"
+                value={fullName}
+                required
+                onChange={(e) => onDonorChange(e, "fullName")}
+              />
+            </ListItem>
+            <ListItem>
+              <InputLabel id="bloodType" required>
+                Blood Type
+              </InputLabel>
+              <Select
+                labelId="bloodType"
+                id="standard-basic"
+                value={bloodType}
+                required
+                onChange={(e) => onDonorChange(e, "bloodType")}
+              >
+                <MenuItem value={"A+"}>A+</MenuItem>
+                <MenuItem value={"A-"}>A-</MenuItem>
+                <MenuItem value={"B+"}>B+</MenuItem>
+                <MenuItem value={"B-"}>B-</MenuItem>
+                <MenuItem value={"O+"}>O+</MenuItem>
+                <MenuItem value={"O-"}>O-</MenuItem>
+              </Select>
+            </ListItem>
+            <ListItem>
+              <TextField
+                fullWidth
+                id="standard-basic"
+                label="City"
+                value={city}
+                required
+                onChange={(e) => onDonorChange(e, "city")}
+              />
+            </ListItem>
+            <ListItem>
+              <TextField
+                fullWidth
+                id="standard-basic"
+                label="State"
+                value={state}
+                onChange={(e) => onDonorChange(e, "state")}
+              />
+            </ListItem>
+            <ListItem>
+              <TextField
+                fullWidth
+                id="standard-basic"
+                label="Country"
+                value={country}
+                onChange={(e) => onDonorChange(e, "country")}
+              />
+            </ListItem>
+            <ListItem>
+              <TextField
+                fullWidth
+                id="standard-basic"
+                label="Contact No"
+                value={contactNo}
+                onChange={(e) => onDonorChange(e, "contactNo")}
+              />
+            </ListItem>
+            <ListItem>
+              <TextField
+                fullWidth
+                id="standard-basic"
+                label="Complete Address"
+                value={fullAddress}
+                onChange={(e) => onDonorChange(e, "fullAddress")}
+              />
+            </ListItem>
+            <ListItem>
+              <Button variant="outlined" onClick={onClearHandler}>
+                Clear
+              </Button>
+            </ListItem>
+          </List>
         </CardContent>
         <CardActions>
           <Button
             disabled={isValid}
             onClick={onRegisterHandler}
-            onSelect={() => onUserStage(2)}
             variant="outlined"
             size="large"
           >

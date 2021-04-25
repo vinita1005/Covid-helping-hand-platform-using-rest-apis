@@ -7,12 +7,23 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-import { DonorService } from "../service/DonorService";
-import { Button, TextField } from "@material-ui/core";
+import { Button, Container, ListItem, TextField } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
+import Avatar from "@material-ui/core/Avatar";
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+import MenuItem from "@material-ui/core/MenuItem";
+import InputLabel from "@material-ui/core/InputLabel";
+import Select from "@material-ui/core/Select";
+
+import List from "@material-ui/core/List";
+
 const useStyles = makeStyles({
   table: {
     minWidth: 650,
+  },
+  root: {
+    width: "100%",
+    maxWidth: 360,
   },
 });
 
@@ -29,14 +40,13 @@ const cols = [
   createData("Contact No"),
 ];
 
-export default function BasicTable() {
+export default function BasicTable({ onUserStage }) {
   const classes = useStyles();
 
   const [donorData, setDonorData] = useState([]);
   const [city, setCity] = useState("");
   const [bloodType, setBloodType] = useState("");
   const [filterDonorData, setFilterDonorData] = useState(donorData);
-  const [deleteId, setDeleteId] = useState("");
 
   useEffect(() => {
     getFetch();
@@ -95,22 +105,61 @@ export default function BasicTable() {
     console.log("target: ", id);
     console.log("response: ", filterDonorData);
   };
+
+  const onClearHandler = () => {
+    setCity("");
+    setBloodType("");
+    setFilterDonorData(donorData);
+  };
   return (
     <>
-      <TextField
-        fullWidth
-        id="standard-basic"
-        label="City"
-        value={city}
-        onChange={onCityChange}
-      />
-      <TextField
-        fullWidth
-        id="standard-basic"
-        label="Blood Type"
-        value={bloodType}
-        onChange={onBloodTypeChange}
-      />
+      <Avatar onClick={() => onUserStage(0)}>
+        <ArrowBackIcon />
+      </Avatar>
+      <div>
+        <List
+          component="nav"
+          className={classes.root}
+          aria-label="mailbox folders"
+        >
+          <ListItem>
+            <h4 align="left">Filter Donors</h4>
+          </ListItem>
+          <ListItem>
+            <TextField
+              fullWidth
+              id="standard-basic"
+              label="City"
+              value={city}
+              onChange={onCityChange}
+            />
+          </ListItem>
+          <ListItem>
+            <InputLabel id="bloodType" required>
+              Blood Type
+            </InputLabel>
+            <Select
+              labelId="bloodType"
+              id="standard-basic"
+              value={bloodType}
+              required
+              onChange={onBloodTypeChange}
+            >
+              <MenuItem value={"A+"}>A+</MenuItem>
+              <MenuItem value={"A-"}>A-</MenuItem>
+              <MenuItem value={"B+"}>B+</MenuItem>
+              <MenuItem value={"B-"}>B-</MenuItem>
+              <MenuItem value={"O+"}>O+</MenuItem>
+              <MenuItem value={"O-"}>O-</MenuItem>
+            </Select>
+          </ListItem>
+          <ListItem>
+            <Button variant="outlined" onClick={onClearHandler}>
+              Clear
+            </Button>
+          </ListItem>
+        </List>
+      </div>
       <TableContainer component={Paper}>
         <Table className={classes.table} aria-label="simple table">
           <TableHead>
