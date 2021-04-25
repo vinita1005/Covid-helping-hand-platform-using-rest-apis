@@ -86,15 +86,14 @@ export default function BasicTable() {
   };
 
   const onDeleteHandler = (id) => {
-    const response = fetch(
-      "http://localhost:8080/donors/deleteDonor?id=" + id,
-      { method: "DELETE" }
-    );
+    fetch("http://localhost:8080/donors/deleteDonor?id=" + id, {
+      method: "DELETE",
+    })
+      .then((response) => response.json())
+      .then((data) => setDonorData(data));
+
     console.log("target: ", id);
-    console.log("response: ", response);
-    // const jsonData = response.json();
-    // console.log(jsonData);
-    // setDonorData(jsonData);
+    console.log("response: ", filterDonorData);
   };
   return (
     <>

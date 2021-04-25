@@ -22,6 +22,7 @@ import com.webservice.vo.Donor;
 
 @RestController
 @RequestMapping("/donors")
+@CrossOrigin(origins = "http://localhost:3000")
 public class DonorController {
 	
 	@Autowired
@@ -33,7 +34,6 @@ public class DonorController {
 	}
 	
 	@GetMapping("/getAll")
-	@CrossOrigin(origins = "http://localhost:3000")
 	public @ResponseBody List<Donor> listAllDonors(){
 		return donorDao.findAll();
 	}
@@ -49,21 +49,18 @@ public class DonorController {
 	}
 	
 	@PostMapping("/addDonor")
-	@CrossOrigin(origins = "http://localhost:3000")
 	public @ResponseBody List<Donor> saveDonor(@RequestBody Donor donor){
 		donorDao.save(donor);
 		return donorDao.findAll();
 	}
 	
 	@PutMapping("/updateDonor")
-	@CrossOrigin(origins = "http://localhost:3000")
 	public @ResponseBody List<Donor> updateDonor(@RequestBody Donor donor){
 		donorDao.save(donor);
 		return donorDao.findAll();
 	}
 	
 	@DeleteMapping("/deleteDonor")
-	@CrossOrigin(origins = "http://localhost:3000")
 	public @ResponseBody List<Donor> deleteDonor(@RequestParam(name = "id") Long id){
 		donorDao.deleteById(id);
 		return donorDao.findAll();

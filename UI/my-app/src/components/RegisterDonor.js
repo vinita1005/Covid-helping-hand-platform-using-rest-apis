@@ -34,7 +34,6 @@ export default function UserRegister({ onUserStage }) {
 
   const onRegisterHandler = () => {
     DonorService().RegisterDonor(donor);
-    // DonorService().GreetDonor();
   };
 
   const onDonorChange = (event, label) => {
@@ -121,6 +120,7 @@ export default function UserRegister({ onUserStage }) {
           <Button
             disabled={isValid}
             onClick={onRegisterHandler}
+            onSelect={() => onUserStage(2)}
             variant="outlined"
             size="large"
           >
