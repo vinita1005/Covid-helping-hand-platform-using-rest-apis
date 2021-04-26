@@ -120,9 +120,9 @@ View Donors
 - Edit Donor profile
 
 ## References:
-1. https://spring.io/guides/tutorials/react-and-spring-data-rest/
-2. https://jasonwatmore.com/post/2020/01/27/react-fetch-http-get-request-examples
-3. https://stackoverflow.com/questions/49685587/redirect-to-another-page-after-submitting-a-form
-4. React components- https://material-ui.com/
-5. Cross origin- https://spring.io/guides/gs/rest-service-cors/
-6. 
+1. https://reactjs.org/tutorial/tutorial.html
+2. https://spring.io/guides/tutorials/react-and-spring-data-rest/
+3. https://jasonwatmore.com/post/2020/01/27/react-fetch-http-get-request-examples
+4. https://stackoverflow.com/questions/49685587/redirect-to-another-page-after-submitting-a-form
+5. React components- https://material-ui.com/
+6. Cross origin- https://spring.io/guides/gs/rest-service-cors/
