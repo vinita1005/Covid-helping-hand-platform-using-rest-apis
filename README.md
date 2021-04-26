@@ -9,7 +9,7 @@ Backend: Spring boot REST APIs.
 Frontend: ReactJs.
 
 ## Software Prerequisites:
-Java 1.8+
+Java 11+
 
 NodeJS and NPM
 
